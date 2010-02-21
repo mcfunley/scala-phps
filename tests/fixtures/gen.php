@@ -13,6 +13,9 @@ class Blah {
 }
 
 save(3, "int");
+save(252873459, "biggerint");
+save(PHP_INT_MAX*3, "overflowint");
+save(-70, "negativeint");
 save(3.5, "float");
 save("foo", "string");
 save(true, "bool");
