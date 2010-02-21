@@ -1,0 +1,26 @@
+<?php
+
+function save($val, $name) {
+    $f = fopen("$name.phps", "w");
+    fwrite($f, serialize($val));
+    fclose($f);
+}
+
+class Blah {
+    private $foo = 1;
+    protected $bar = 2;
+    public $baz = 3;
+}
+
+save(3, "int");
+save(3.5, "float");
+save("foo", "string");
+save(true, "bool");
+save(null, "null");
+save(array(), "empty-array");
+save(array(1,2,3), "array");
+save(array("foo" => 1, "bar" => 2), "assoc-array");
+save(array(1 => "a", "foo" => "bar"), "mixed-array");
+save(new Blah, "object");
+save('foo"baz', "quotestring");
+save(get_object_vars(new Blah), "objectvars");
