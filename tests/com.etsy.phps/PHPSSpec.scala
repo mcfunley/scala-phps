@@ -71,6 +71,28 @@ class PHPSSpec extends Spec with ShouldMatchers {
       parse("mixed-array") should be (Map(1 -> "a", "foo" -> "bar"))
     }
 
+    def phpobj = parse("object").asInstanceOf[PHPObject]
+
+    it("should parse object names") {
+      phpobj.className should be ("Blah")
+    }
+
+    it("should parse object fields") {
+      phpobj.fields("bar") should be (2)
+    }
+
+    it("should correctly parse public access") {
+      phpobj.fieldAccess("foo") should be (Private)
+    }
+
+    it("should correctly parse private access") {
+      phpobj.fieldAccess("bar") should be (Protected)
+    }
+
+    it("should correctly parse protected access") {
+      phpobj.fieldAccess("baz") should be (Public)
+    }
+
   }
 
 }
